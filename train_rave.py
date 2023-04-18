@@ -55,6 +55,7 @@ if __name__ == "__main__":
         SR = 48000
         N_SIGNAL = 65536
         MAX_STEPS = 2000000000
+        NUM_WORKERS = 8
 
         BATCH = 8
 
@@ -112,8 +113,8 @@ if __name__ == "__main__":
     train = len(dataset) - val
     train, val = random_split(dataset, [train, val])
 
-    train = DataLoader(train, args.BATCH, True, drop_last=True, num_workers=8)
-    val = DataLoader(val, args.BATCH, False, num_workers=8)
+    train = DataLoader(train, args.BATCH, True, drop_last=True, num_workers=args.NUM_WORKERS)
+    val = DataLoader(val, args.BATCH, False, num_workers=args.NUM_WORKERS)
 
     # CHECKPOINT CALLBACKS
     validation_checkpoint = pl.callbacks.ModelCheckpoint(
