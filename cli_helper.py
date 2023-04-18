@@ -81,7 +81,7 @@ if __name__ == "__main__":
     cmd += f"--wav {data} "
     prep_rave = path.join(preprocessed, name, "rave")
     cmd += f"--preprocessed {prep_rave} "
-    cmd += f"--in_channels {in_channels} "
+    cmd += f"--in-channels {in_channels} "
     if sampling_rate:
         cmd += f"--sr {sampling_rate} "
     if multiband_number:
