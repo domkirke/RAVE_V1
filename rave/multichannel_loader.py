@@ -23,6 +23,8 @@ def simple_audio_preprocess(sampling_rate, N, n_channels = 2):
             x = np.expand_dims(x, axis=0).repeat(n_channels, axis=0)
         if x.shape[0] > n_channels:
             x = x[:n_channels]
+        elif x.shape[0] < n_channels:
+            raise RuntimeError('file name has %d channels, but %d channels are required'%(x.shape[0], n_channels))
         try:
             if len(x.shape) > 1:
                 x = np.pad(x, (*((0,0)*(len(x.shape)-1),), (0, int(pad))))

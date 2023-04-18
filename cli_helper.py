@@ -50,6 +50,8 @@ if __name__ == "__main__":
         preprocessed = input("pre-processed data temporary folder (different that path to .wav): ")
 
     in_channels = input("number of audio channels (default to 1):")
+    if in_channels == "":
+        in_channels = "1"
     sampling_rate = input("sampling rate (defaults to 48000): ")
     multiband_number = input("multiband number (defaults to 16): ")
     n_signal = input("training example duration (defaults to 65536 samples): ")

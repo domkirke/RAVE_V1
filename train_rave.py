@@ -1,6 +1,8 @@
 from ast import arg
 import torch
 from torch.utils.data import DataLoader, random_split
+import multiprocessing
+
 
 from rave.model import RAVE
 from rave.core import random_phase_mangle, EMAModelCheckPoint
@@ -55,7 +57,7 @@ if __name__ == "__main__":
         SR = 48000
         N_SIGNAL = 65536
         MAX_STEPS = 2000000000
-        NUM_WORKERS = 8
+        NUM_WORKERS = multiprocessing.cpu_count()
 
         BATCH = 8
 
@@ -96,7 +98,7 @@ if __name__ == "__main__":
         args.WAV,
         preprocess_function=simple_audio_preprocess(args.SR,
                                                     2 * args.N_SIGNAL, 
-                                                    n_channels=args.IN_CHANNELS),
+                                                    n_channels=int(args.IN_CHANNELS)),
         split_set="full",
         transforms=Compose([
             RandomCrop(args.N_SIGNAL),
@@ -113,8 +115,8 @@ if __name__ == "__main__":
     train = len(dataset) - val
     train, val = random_split(dataset, [train, val])
 
-    train = DataLoader(train, args.BATCH, True, drop_last=True, num_workers=args.NUM_WORKERS)
-    val = DataLoader(val, args.BATCH, False, num_workers=args.NUM_WORKERS)
+    train = DataLoader(train, args.BATCH, True, drop_last=True, num_workers=int(args.NUM_WORKERS))
+    val = DataLoader(val, args.BATCH, False, num_workers=int(args.NUM_WORKERS))
 
     # CHECKPOINT CALLBACKS
     validation_checkpoint = pl.callbacks.ModelCheckpoint(
