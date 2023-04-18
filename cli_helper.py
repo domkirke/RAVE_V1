@@ -47,7 +47,7 @@ if __name__ == "__main__":
 
     preprocessed = ""
     while not preprocessed:
-        preprocessed = input("temporary folder (fast drive): ")
+        preprocessed = input("pre-processed data temporary folder (different that path to .wav): ")
 
     sampling_rate = input("sampling rate (defaults to 48000): ")
     multiband_number = input("multiband number (defaults to 16): ")
