@@ -21,7 +21,7 @@ if __name__ == "__main__":
         groups = ["small", "large"]
 
         DATA_SIZE = 16
-        IN_CHANNELS = 4
+        IN_CHANNELS = 1
         CAPACITY = setting(default=64, small=32, large=64)
         LATENT_SIZE = 128
         RATIOS = setting(

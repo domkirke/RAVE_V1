@@ -23,12 +23,21 @@ pip install -r requirements.txt
 ```
 
 ## Training a RAVE model
-The simplest method to train a RAVE is to first generate the needed instructions by executing the `cli_helper.py` script.
+
+### Resampling the dataset
+If your dataset files does not have the same sampling rate as the model (let say, 44100), you first need to resample them. You can do that by running
+```
+resample --input ${INPUT_DATASET} --sr ${SAMPLING_RATE} --output ${RESAMPLED_DATASET}
+```
+where `${INPUT_DATASET}` is your audio folder, `${RESAMPLE_DATASET}` the folder that will contain your resampled files, and `${SAMPLING_RATE}` the target sampling rate.
+
+### Running the helper
+Then, the simplest method to train a RAVE is to first generate the needed instructions by executing the `cli_helper.py` script.
 To do this, type : 
 ```
 python3 cli_helper.py
 ```
-and enter the required information for your training (leave empty to set to default value). This will export a `.txt` file at the root of `RAVE_V1.txt` named after the training name, specifying all the instructions to train/export the model and its prior. 
+and enter the required information for your training (leave empty to set to default value).
 - *training name* : name of your training (will define the name of the folder containing the model & tensorboard)
 - *path to .wav file*: the directory containing your audio files.
 - *pre-processed data* : to be able to train on your files, RAVE must pre-process them in a *lmdb* format. This folder will contain the pre-processed data. 
@@ -41,6 +50,9 @@ and enter the required information for your training (leave empty to set to defa
 - *latency compensation*: set to `True` for a no-latency real-time use (*warning : the system will have a lower generation capacity*)
 - *latent size* : set a fixed latent size during export (learnt from reconstruction fidelity if set blank)
 - *regularization strength* : latent regularization factor (0.0 will provide a better reconstruction but dangerously low generalization ability ; >0.1 the latent representation will be smoother, but the reconstruction may be poorer.)
+
+### Training the model
+This will export a `.txt` file at the root of `RAVE_V1/` named after the training name, specifying all the instructions to train/export the model and its prior. 
 
 
 **Warning!** if you train on remote GPUs, the training script will stop if you disconnect. To prevent the training process to be killed with your terminal, use `screen` to detach the training process from the terminal: 

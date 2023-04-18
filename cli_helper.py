@@ -49,6 +49,7 @@ if __name__ == "__main__":
     while not preprocessed:
         preprocessed = input("pre-processed data temporary folder (different that path to .wav): ")
 
+    in_channels = input("number of audio channels (default to 1):")
     sampling_rate = input("sampling rate (defaults to 48000): ")
     multiband_number = input("multiband number (defaults to 16): ")
     n_signal = input("training example duration (defaults to 65536 samples): ")
@@ -80,7 +81,7 @@ if __name__ == "__main__":
     cmd += f"--wav {data} "
     prep_rave = path.join(preprocessed, name, "rave")
     cmd += f"--preprocessed {prep_rave} "
-
+    cmd += f"--in_channels {in_channels} "
     if sampling_rate:
         cmd += f"--sr {sampling_rate} "
     if multiband_number:

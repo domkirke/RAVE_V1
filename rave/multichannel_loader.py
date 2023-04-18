@@ -28,11 +28,13 @@ def simple_audio_preprocess(sampling_rate, N, n_channels = 2):
                 x = np.pad(x, (*((0,0)*(len(x.shape)-1),), (0, int(pad))))
             else:
                 x = np.pad(x, (0, int(pad)))
-        except TypeError:
+        except TypeError as e:
+            print('Error : ', e)
             pdb.set_trace()
         try:
             x = x.reshape(-1, n_channels, N)
         except Exception as e:
+            print('Error : ', e)
             pdb.set_trace()
         x = x.reshape(n_channels, -1, N)
         x = np.transpose(x, (1, 0, 2))
