@@ -2,6 +2,8 @@
 
 This is a repository containing the RAVE legacy model by [Antoine Caillon](http://www.github.com/caillonantoine), with some additional resources and features (such as multi-channel learning). 
 
+[You can find the corresponding Google Colab here](https://colab.research.google.com/drive/12pZ9SWrRFR5iHYb0X7OMuO3knlCqHRMm?usp=sharing).
+
 ## Installing RAVE
 
 - Install the [`miniconda`](https://docs.conda.io/en/latest/miniconda.html) dependency manager (RECOMMANDED)
