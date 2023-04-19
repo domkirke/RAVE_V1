@@ -57,7 +57,7 @@ if __name__ == "__main__":
         SR = 48000
         N_SIGNAL = 65536
         MAX_STEPS = 2000000000
-        NUM_WORKERS = multiprocessing.cpu_count()
+        NUM_WORKERS = 0
 
         BATCH = 8
 

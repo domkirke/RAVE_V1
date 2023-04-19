@@ -1,5 +1,7 @@
 # RAVE-v1
 
+This is a repository containing the RAVE legacy model by [Antoine Caillon](http://www.github.com/caillonantoine), with some additional resources and features (such as multi-channel learning). 
+
 ## Installing RAVE
 
 - Install the [`miniconda`](https://docs.conda.io/en/latest/miniconda.html) dependency manager (RECOMMANDED)
@@ -69,3 +71,5 @@ screen -ls
 # then, recall the screen from its name
 screen -r screen_name
 ```
+
+## Generating from the model
